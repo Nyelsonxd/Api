@@ -10,3 +10,9 @@ class Cadastro(BaseModel):
 class ResponseSchema(BaseModel):
     status: str
     message : Optional[str] = None
+
+class Cadastro_carro(BaseModel):
+    modelo: str
+    marca: str
+    placa: str
+    ano: int

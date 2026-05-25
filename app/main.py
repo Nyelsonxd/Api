@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.schemas import Cadastro, ResponseSchema
+from app.schemas import Cadastro, ResponseSchema, Cadastro_carro
 
 
 app = FastAPI()
@@ -33,3 +33,16 @@ async def criar_cadastro(payload: Cadastro):
 @app.get("/cadastros", response_model=list[Cadastro])
 async def listar_cadastros():
     return database
+
+@app.post("/cadastrar_carro")
+async def cadastrar_carro(payload: Cadastro_carro):
+    dados = {
+        "modelo": payload.modelo,
+        "marca": payload.marca,
+        "placa": payload.placa,
+        "ano": payload.ano
+    }
+
+    database.append(dados)
+    return database
+    
